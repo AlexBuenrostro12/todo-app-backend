@@ -1,4 +1,27 @@
 type User {
   id: ID! @id
   name: String!
+  email: String! @unique
+  password: String!
+  tickets: [Ticket!] @relation(link: INLINE)
+}
+
+type Ticket {
+  id: ID! @id
+  owner: User!
+  developer: Developer @relation(link: INLINE)
+  title: String!
+  comments: [Comment!] @relation(link: INLINE)
+  review: DateTime
+}
+
+type Comment {
+  id: ID! @id
+  commentedBy: User! @relation(link: INLINE)
+  comment: String!
+}
+
+type Developer {
+  id: ID! @id
+  developedBy: User! @relation(link: INLINE)
 }

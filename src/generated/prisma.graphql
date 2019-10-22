@@ -1,3 +1,15 @@
+type AggregateComment {
+  count: Int!
+}
+
+type AggregateDeveloper {
+  count: Int!
+}
+
+type AggregateTicket {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -6,9 +18,297 @@ type BatchPayload {
   count: Long!
 }
 
+type Comment {
+  id: ID!
+  commentedBy: User!
+  comment: String!
+}
+
+type CommentConnection {
+  pageInfo: PageInfo!
+  edges: [CommentEdge]!
+  aggregate: AggregateComment!
+}
+
+input CommentCreateInput {
+  id: ID
+  commentedBy: UserCreateOneInput!
+  comment: String!
+}
+
+input CommentCreateManyInput {
+  create: [CommentCreateInput!]
+  connect: [CommentWhereUniqueInput!]
+}
+
+type CommentEdge {
+  node: Comment!
+  cursor: String!
+}
+
+enum CommentOrderByInput {
+  id_ASC
+  id_DESC
+  comment_ASC
+  comment_DESC
+}
+
+type CommentPreviousValues {
+  id: ID!
+  comment: String!
+}
+
+input CommentScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  AND: [CommentScalarWhereInput!]
+  OR: [CommentScalarWhereInput!]
+  NOT: [CommentScalarWhereInput!]
+}
+
+type CommentSubscriptionPayload {
+  mutation: MutationType!
+  node: Comment
+  updatedFields: [String!]
+  previousValues: CommentPreviousValues
+}
+
+input CommentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CommentWhereInput
+  AND: [CommentSubscriptionWhereInput!]
+}
+
+input CommentUpdateDataInput {
+  commentedBy: UserUpdateOneRequiredInput
+  comment: String
+}
+
+input CommentUpdateInput {
+  commentedBy: UserUpdateOneRequiredInput
+  comment: String
+}
+
+input CommentUpdateManyDataInput {
+  comment: String
+}
+
+input CommentUpdateManyInput {
+  create: [CommentCreateInput!]
+  update: [CommentUpdateWithWhereUniqueNestedInput!]
+  upsert: [CommentUpsertWithWhereUniqueNestedInput!]
+  delete: [CommentWhereUniqueInput!]
+  connect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  updateMany: [CommentUpdateManyWithWhereNestedInput!]
+}
+
+input CommentUpdateManyMutationInput {
+  comment: String
+}
+
+input CommentUpdateManyWithWhereNestedInput {
+  where: CommentScalarWhereInput!
+  data: CommentUpdateManyDataInput!
+}
+
+input CommentUpdateWithWhereUniqueNestedInput {
+  where: CommentWhereUniqueInput!
+  data: CommentUpdateDataInput!
+}
+
+input CommentUpsertWithWhereUniqueNestedInput {
+  where: CommentWhereUniqueInput!
+  update: CommentUpdateDataInput!
+  create: CommentCreateInput!
+}
+
+input CommentWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  commentedBy: UserWhereInput
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  AND: [CommentWhereInput!]
+}
+
+input CommentWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+type Developer {
+  id: ID!
+  developedBy: User!
+}
+
+type DeveloperConnection {
+  pageInfo: PageInfo!
+  edges: [DeveloperEdge]!
+  aggregate: AggregateDeveloper!
+}
+
+input DeveloperCreateInput {
+  id: ID
+  developedBy: UserCreateOneInput!
+}
+
+input DeveloperCreateOneInput {
+  create: DeveloperCreateInput
+  connect: DeveloperWhereUniqueInput
+}
+
+type DeveloperEdge {
+  node: Developer!
+  cursor: String!
+}
+
+enum DeveloperOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type DeveloperPreviousValues {
+  id: ID!
+}
+
+type DeveloperSubscriptionPayload {
+  mutation: MutationType!
+  node: Developer
+  updatedFields: [String!]
+  previousValues: DeveloperPreviousValues
+}
+
+input DeveloperSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DeveloperWhereInput
+  AND: [DeveloperSubscriptionWhereInput!]
+}
+
+input DeveloperUpdateDataInput {
+  developedBy: UserUpdateOneRequiredInput
+}
+
+input DeveloperUpdateInput {
+  developedBy: UserUpdateOneRequiredInput
+}
+
+input DeveloperUpdateOneInput {
+  create: DeveloperCreateInput
+  update: DeveloperUpdateDataInput
+  upsert: DeveloperUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: DeveloperWhereUniqueInput
+}
+
+input DeveloperUpsertNestedInput {
+  update: DeveloperUpdateDataInput!
+  create: DeveloperCreateInput!
+}
+
+input DeveloperWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  developedBy: UserWhereInput
+  AND: [DeveloperWhereInput!]
+}
+
+input DeveloperWhereUniqueInput {
+  id: ID
+}
+
 scalar Long
 
 type Mutation {
+  createComment(data: CommentCreateInput!): Comment!
+  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
+  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
+  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
+  deleteComment(where: CommentWhereUniqueInput!): Comment
+  deleteManyComments(where: CommentWhereInput): BatchPayload!
+  createDeveloper(data: DeveloperCreateInput!): Developer!
+  updateDeveloper(data: DeveloperUpdateInput!, where: DeveloperWhereUniqueInput!): Developer
+  upsertDeveloper(where: DeveloperWhereUniqueInput!, create: DeveloperCreateInput!, update: DeveloperUpdateInput!): Developer!
+  deleteDeveloper(where: DeveloperWhereUniqueInput!): Developer
+  deleteManyDevelopers(where: DeveloperWhereInput): BatchPayload!
+  createTicket(data: TicketCreateInput!): Ticket!
+  updateTicket(data: TicketUpdateInput!, where: TicketWhereUniqueInput!): Ticket
+  updateManyTickets(data: TicketUpdateManyMutationInput!, where: TicketWhereInput): BatchPayload!
+  upsertTicket(where: TicketWhereUniqueInput!, create: TicketCreateInput!, update: TicketUpdateInput!): Ticket!
+  deleteTicket(where: TicketWhereUniqueInput!): Ticket
+  deleteManyTickets(where: TicketWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -35,6 +335,15 @@ type PageInfo {
 }
 
 type Query {
+  comment(where: CommentWhereUniqueInput!): Comment
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
+  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
+  developer(where: DeveloperWhereUniqueInput!): Developer
+  developers(where: DeveloperWhereInput, orderBy: DeveloperOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Developer]!
+  developersConnection(where: DeveloperWhereInput, orderBy: DeveloperOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DeveloperConnection!
+  ticket(where: TicketWhereUniqueInput!): Ticket
+  tickets(where: TicketWhereInput, orderBy: TicketOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ticket]!
+  ticketsConnection(where: TicketWhereInput, orderBy: TicketOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TicketConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -42,12 +351,233 @@ type Query {
 }
 
 type Subscription {
+  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
+  developer(where: DeveloperSubscriptionWhereInput): DeveloperSubscriptionPayload
+  ticket(where: TicketSubscriptionWhereInput): TicketSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Ticket {
+  id: ID!
+  owner: User!
+  developer: Developer
+  title: String!
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  review: DateTime
+}
+
+type TicketConnection {
+  pageInfo: PageInfo!
+  edges: [TicketEdge]!
+  aggregate: AggregateTicket!
+}
+
+input TicketCreateInput {
+  id: ID
+  owner: UserCreateOneWithoutTicketsInput!
+  developer: DeveloperCreateOneInput
+  title: String!
+  comments: CommentCreateManyInput
+  review: DateTime
+}
+
+input TicketCreateManyWithoutOwnerInput {
+  create: [TicketCreateWithoutOwnerInput!]
+  connect: [TicketWhereUniqueInput!]
+}
+
+input TicketCreateWithoutOwnerInput {
+  id: ID
+  developer: DeveloperCreateOneInput
+  title: String!
+  comments: CommentCreateManyInput
+  review: DateTime
+}
+
+type TicketEdge {
+  node: Ticket!
+  cursor: String!
+}
+
+enum TicketOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  review_ASC
+  review_DESC
+}
+
+type TicketPreviousValues {
+  id: ID!
+  title: String!
+  review: DateTime
+}
+
+input TicketScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  review: DateTime
+  review_not: DateTime
+  review_in: [DateTime!]
+  review_not_in: [DateTime!]
+  review_lt: DateTime
+  review_lte: DateTime
+  review_gt: DateTime
+  review_gte: DateTime
+  AND: [TicketScalarWhereInput!]
+  OR: [TicketScalarWhereInput!]
+  NOT: [TicketScalarWhereInput!]
+}
+
+type TicketSubscriptionPayload {
+  mutation: MutationType!
+  node: Ticket
+  updatedFields: [String!]
+  previousValues: TicketPreviousValues
+}
+
+input TicketSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TicketWhereInput
+  AND: [TicketSubscriptionWhereInput!]
+}
+
+input TicketUpdateInput {
+  owner: UserUpdateOneRequiredWithoutTicketsInput
+  developer: DeveloperUpdateOneInput
+  title: String
+  comments: CommentUpdateManyInput
+  review: DateTime
+}
+
+input TicketUpdateManyDataInput {
+  title: String
+  review: DateTime
+}
+
+input TicketUpdateManyMutationInput {
+  title: String
+  review: DateTime
+}
+
+input TicketUpdateManyWithoutOwnerInput {
+  create: [TicketCreateWithoutOwnerInput!]
+  delete: [TicketWhereUniqueInput!]
+  connect: [TicketWhereUniqueInput!]
+  set: [TicketWhereUniqueInput!]
+  disconnect: [TicketWhereUniqueInput!]
+  update: [TicketUpdateWithWhereUniqueWithoutOwnerInput!]
+  upsert: [TicketUpsertWithWhereUniqueWithoutOwnerInput!]
+  deleteMany: [TicketScalarWhereInput!]
+  updateMany: [TicketUpdateManyWithWhereNestedInput!]
+}
+
+input TicketUpdateManyWithWhereNestedInput {
+  where: TicketScalarWhereInput!
+  data: TicketUpdateManyDataInput!
+}
+
+input TicketUpdateWithoutOwnerDataInput {
+  developer: DeveloperUpdateOneInput
+  title: String
+  comments: CommentUpdateManyInput
+  review: DateTime
+}
+
+input TicketUpdateWithWhereUniqueWithoutOwnerInput {
+  where: TicketWhereUniqueInput!
+  data: TicketUpdateWithoutOwnerDataInput!
+}
+
+input TicketUpsertWithWhereUniqueWithoutOwnerInput {
+  where: TicketWhereUniqueInput!
+  update: TicketUpdateWithoutOwnerDataInput!
+  create: TicketCreateWithoutOwnerInput!
+}
+
+input TicketWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  owner: UserWhereInput
+  developer: DeveloperWhereInput
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  comments_some: CommentWhereInput
+  review: DateTime
+  review_not: DateTime
+  review_in: [DateTime!]
+  review_not_in: [DateTime!]
+  review_lt: DateTime
+  review_lte: DateTime
+  review_gt: DateTime
+  review_gte: DateTime
+  AND: [TicketWhereInput!]
+}
+
+input TicketWhereUniqueInput {
+  id: ID
 }
 
 type User {
   id: ID!
   name: String!
+  email: String!
+  password: String!
+  tickets(where: TicketWhereInput, orderBy: TicketOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ticket!]
 }
 
 type UserConnection {
@@ -59,6 +589,26 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   name: String!
+  email: String!
+  password: String!
+  tickets: TicketCreateManyWithoutOwnerInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutTicketsInput {
+  create: UserCreateWithoutTicketsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutTicketsInput {
+  id: ID
+  name: String!
+  email: String!
+  password: String!
 }
 
 type UserEdge {
@@ -71,11 +621,17 @@ enum UserOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   name: String!
+  email: String!
+  password: String!
 }
 
 type UserSubscriptionPayload {
@@ -94,12 +650,54 @@ input UserSubscriptionWhereInput {
   AND: [UserSubscriptionWhereInput!]
 }
 
+input UserUpdateDataInput {
+  name: String
+  email: String
+  password: String
+  tickets: TicketUpdateManyWithoutOwnerInput
+}
+
 input UserUpdateInput {
   name: String
+  email: String
+  password: String
+  tickets: TicketUpdateManyWithoutOwnerInput
 }
 
 input UserUpdateManyMutationInput {
   name: String
+  email: String
+  password: String
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutTicketsInput {
+  create: UserCreateWithoutTicketsInput
+  update: UserUpdateWithoutTicketsDataInput
+  upsert: UserUpsertWithoutTicketsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutTicketsDataInput {
+  name: String
+  email: String
+  password: String
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithoutTicketsInput {
+  update: UserUpdateWithoutTicketsDataInput!
+  create: UserCreateWithoutTicketsInput!
 }
 
 input UserWhereInput {
@@ -131,9 +729,39 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  tickets_some: TicketWhereInput
   AND: [UserWhereInput!]
 }
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
 }
