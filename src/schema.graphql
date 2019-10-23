@@ -1,9 +1,15 @@
 # import * from './generated/prisma.graphql'
 
 type Mutation {
-    createUser(name: String!): User!
+    signUp(name: String!, email: String!, password: String!): User!
+    createTicket(owner: UserCreateOneWithoutTicketsInput!, title: String!): Ticket!
+    commentTicket(data: TicketUpdateInput!, where: TicketWhereUniqueInput!): Ticket!
+    assignDeveloper(data: TicketUpdateInput!, where: TicketWhereUniqueInput!): Ticket!
+
 }
 
 type Query {
-    users(where: UserWhereInput): [User]!
+    users(where: UserWhereUniqueInput): [User]!
+    signIn(where: UserWhereUniqueInput! AND: UserWhereInput!): User!
+    tickets(where: TicketWhereUniqueInput): [Ticket]!
 }
