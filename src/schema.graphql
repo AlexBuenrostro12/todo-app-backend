@@ -10,6 +10,6 @@ type Mutation {
 
 type Query {
     users(where: UserWhereUniqueInput): [User]!
-    signIn(where: UserWhereUniqueInput! AND: UserWhereInput!): User!
+    signIn(where: UserWhereUniqueInput!, password: String!): User!
     tickets(where: TicketWhereUniqueInput): [Ticket]!
 }
