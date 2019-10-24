@@ -12,4 +12,5 @@ type Query {
     users(where: UserWhereUniqueInput): [User]!
     signIn(where: UserWhereUniqueInput!, password: String!): User!
     tickets(where: TicketWhereUniqueInput): [Ticket]!
+    me(where: UserWhereUniqueInput): User!
 }

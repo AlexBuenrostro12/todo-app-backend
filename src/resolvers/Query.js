@@ -15,7 +15,13 @@ const Query = {
         console.log('user: ', user);
         return user;
     },
-    tickets: forwardTo('db')
+    tickets: forwardTo('db'),
+    async me(paren, args, ctx, info) {
+        const me = await ctx.db.query.user({...args });
+        if (!me) 
+            throw new Error(`You must need sign in!`)
+        return me;
+    }
 };
 
 module.exports = Query;
