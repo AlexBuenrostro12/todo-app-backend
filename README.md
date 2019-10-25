@@ -2,7 +2,7 @@
 
 # 1.- Instalar Prisma CLI
 npm install -g prisma
-# 2.- Instalar Docket
+# 2.- Instalar Docker
 https://docs.docker.com/install/
 # 3.- Iniciar prisma y lanzar la base de datos
 docker-compose up -d
