@@ -363,7 +363,7 @@ type Ticket {
   developer: Developer
   title: String!
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
-  review: DateTime
+  review: DateTime!
 }
 
 type TicketConnection {
@@ -378,7 +378,7 @@ input TicketCreateInput {
   developer: DeveloperCreateOneInput
   title: String!
   comments: CommentCreateManyInput
-  review: DateTime
+  review: DateTime!
 }
 
 input TicketCreateManyWithoutOwnerInput {
@@ -391,7 +391,7 @@ input TicketCreateWithoutOwnerInput {
   developer: DeveloperCreateOneInput
   title: String!
   comments: CommentCreateManyInput
-  review: DateTime
+  review: DateTime!
 }
 
 type TicketEdge {
@@ -411,7 +411,7 @@ enum TicketOrderByInput {
 type TicketPreviousValues {
   id: ID!
   title: String!
-  review: DateTime
+  review: DateTime!
 }
 
 input TicketScalarWhereInput {

@@ -12,7 +12,7 @@ type Ticket {
   developer: Developer @relation(link: INLINE)
   title: String!
   comments: [Comment!] @relation(link: INLINE)
-  review: DateTime
+  review: DateTime!
 }
 
 type Comment {

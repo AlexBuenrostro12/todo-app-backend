@@ -16,12 +16,6 @@ const Query = {
         return user;
     },
     tickets: forwardTo('db'),
-    async me(paren, args, ctx, info) {
-        const me = await ctx.db.query.user({...args });
-        if (!me) 
-            throw new Error(`You must need sign in!`)
-        return me;
-    },
     ticket: forwardTo('db'),
 };
 

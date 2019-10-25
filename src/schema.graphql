@@ -2,7 +2,7 @@
 
 type Mutation {
     signUp(name: String!, email: String!, password: String!): User!
-    createTicket(owner: UserCreateOneWithoutTicketsInput!, title: String!): Ticket!
+    createTicket(owner: UserCreateOneWithoutTicketsInput!, title: String!, review: DateTime!): Ticket!
     commentTicket(data: TicketUpdateInput!, where: TicketWhereUniqueInput!): Ticket!
     assignDeveloper(data: TicketUpdateInput!, where: TicketWhereUniqueInput!): Ticket!
     updateTicket(where: TicketWhereUniqueInput!, data: TicketUpdateInput!): Ticket
@@ -13,6 +13,5 @@ type Query {
     users(where: UserWhereUniqueInput): [User]!
     signIn(where: UserWhereUniqueInput!, password: String!): User!
     tickets(where: TicketWhereUniqueInput): [Ticket]!
-    me(where: UserWhereUniqueInput): User!
     ticket(where: TicketWhereUniqueInput): Ticket
 }

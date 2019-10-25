@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const Mutation = {
     async signUp(parent, args, ctx, info) {
@@ -14,14 +13,7 @@ const Mutation = {
                 password,
             }
         }, info);
-        // Create JWT token for them
-        // const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-        // console.log('token: ', token);
-        // // We set the jwt as a cookie on the response
-        // ctx.response.cookie('token', token, {
-        //     httpOnly: true,
-        //     maxAge: 1000 * 60 * 60 * 24 * 365, // one year cookie
-        // });
+
         console.log(user);
         return user;
     },
