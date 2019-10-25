@@ -52,6 +52,18 @@ const Mutation = {
         console.log('assignedDeveloper: ', assignedDeveloper);
         return assignedDeveloper;
     },
+    async updateTicket(parent, args, ctx, info) {
+        const updatedTicket = await ctx.db.mutation.updateTicket({
+            ...args
+        }, info);
+        return updatedTicket;
+    },
+    async deleteTicket(parent, args, ctx, info) {
+        const deletedTicket = await ctx.db.mutation.deleteTicket({
+            ...args
+        }, info);
+        return deletedTicket;
+    }
 };
 
 module.exports = Mutation;

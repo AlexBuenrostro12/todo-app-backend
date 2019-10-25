@@ -21,7 +21,8 @@ const Query = {
         if (!me) 
             throw new Error(`You must need sign in!`)
         return me;
-    }
+    },
+    ticket: forwardTo('db'),
 };
 
 module.exports = Query;
