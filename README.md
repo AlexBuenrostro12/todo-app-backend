@@ -13,3 +13,6 @@ npm run deploy
 npm run dev
 Despues de ejecutar este comando
 el servidor local estara en: http://localhost:4000/
+
+# Documentacion oficial
+https://www.prisma.io/docs/get-started/01-setting-up-prisma-new-database-JAVASCRIPT-a002/
